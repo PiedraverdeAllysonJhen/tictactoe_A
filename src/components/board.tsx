@@ -1,4 +1,3 @@
-import React from 'react';
 import type { BoardProps, Player } from '../type';
 import Square from './square';
 import { calculateWinner } from '../utils/winnerCalculator';
