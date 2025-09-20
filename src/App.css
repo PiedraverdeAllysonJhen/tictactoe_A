@@ -1,42 +1,318 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+    --background-color: #1a1a2e;
+    --text-color: #eee;
+    --board-bg-color: #16213e;
+    --board-border-color: #0f3460;
+    --square-bg-color: #0f3460;
+    --square-hover-bg-color: #0e6ba8;
+    --button-bg-color: #e94560;
+    --button-hover-bg-color: #f16179;
+    --button-text-color: #ffffff;
+    --status-text-color: #eee;
+    --x-color: #ff6b6b;
+    --o-color: #4ecdc4;
+    --winner-bg-color: #51cf66;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dark-mode {
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --board-bg-color: #ffffff;
+    --board-border-color: #dee2e6;
+    --square-bg-color: #f8f9fa;
+    --square-hover-bg-color: #e9ecef;
+    --button-bg-color: #6c5ce7;
+    --button-hover-bg-color: #5f3dc4;
+    --button-text-color: #ffffff;
+    --status-text-color: #495057;
+    --x-color: #e17055;
+    --o-color: #00b894;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+* {
+    box-sizing: border-box;
 }
 
-.card {
-  padding: 2em;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color-scheme: light dark;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.5s ease;
 }
 
-.read-the-docs {
-  color: #888;
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: var(--board-bg-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    width: 100%;
+    min-height: 600px;
+}
+
+.game-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    flex: 1;
+}
+
+.scoreboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.score-card {
+    background-color: var(--square-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 3px solid var(--board-border-color);
+    transition: transform 0.2s ease;
+}
+
+.score-card:hover {
+    transform: translateY(-2px);
+}
+
+.score-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.score-card .score {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.score-card.x {
+    color: var(--x-color);
+    border-color: var(--x-color);
+}
+
+.score-card.o {
+    color: var(--o-color);
+    border-color: var(--o-color);
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.board-row {
+    display: flex;
+    gap: 8px;
+}
+
+.status {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--status-text-color);
+    text-align: center;
+    min-height: 40px;
+}
+
+.square {
+    background-color: var(--square-bg-color);
+    border: 4px solid var(--board-border-color);
+    border-radius: 15px;
+    font-size: 4rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    line-height: 1;
+    font-family: 'Arial', sans-serif;
+}
+
+.square:hover {
+    background-color: var(--square-hover-bg-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.square:focus {
+    outline: none;
+}
+
+.square:active {
+    transform: scale(0.98);
+}
+
+.game-info {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-info ol {
+    padding-left: 0;
+    list-style-type: none;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid var(--board-border-color);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: var(--square-bg-color);
+}
+
+.game-info li {
+    margin-bottom: 8px;
+}
+
+button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 140px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+.controls button {
+    flex: 1;
+    min-width: 160px;
+}
+
+@media (max-width: 900px) {
+    .game {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 25px;
+        min-height: auto;
+    }
+    
+    .game-info {
+        flex: none;
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .controls {
+        order: -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .scoreboard {
+        gap: 15px;
+    }
+    
+    .score-card {
+        padding: 15px;
+    }
+    
+    .score-card .score {
+        font-size: 2rem;
+    }
+    
+    .square {
+        width: 110px;
+        height: 110px;
+        font-size: 3rem;
+    }
+    
+    .board-row {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 500px) {
+    .game {
+        padding: 15px;
+    }
+    
+    .scoreboard {
+        gap: 10px;
+    }
+    
+    .score-card {
+        padding: 12px;
+    }
+    
+    .score-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .score-card .score {
+        font-size: 1.8rem;
+    }
+    
+    .square {
+        width: 90px;
+        height: 90px;
+        font-size: 2.5rem;
+        border-width: 3px;
+    }
+    
+    .board-row {
+        gap: 4px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .controls button {
+        width: 100%;
+    }
 }
