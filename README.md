@@ -48,11 +48,10 @@ src/
 │   ├── winnerCalculator.tsx  # Game logic for determining winners
 │   └── scorer.tsx            # Score tracking utilities
 ├── App.tsx               # Root component
-├── App.css              # Styling
-├── type.ts              # TypeScript type definitions
-├── main.tsx             # Application entry point
-├── index.css             # TypeScript type definitions
-└── main.tsx             # Application entry point
+├── App.css               # Styling
+├── type.ts               # TypeScript type definitions
+├── main.tsx              # Application entry point
+└── index.css             # Global styles
 
 🎯 How to Play
 
