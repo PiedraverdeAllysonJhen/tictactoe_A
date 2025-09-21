@@ -13,22 +13,6 @@
     --o-color: #4ecdc4;
     --winner-bg-color: #51cf66;
 }
-
-.dark-mode {
-    --background-color: #f8f9fa;
-    --text-color: #212529;
-    --board-bg-color: #ffffff;
-    --board-border-color: #dee2e6;
-    --square-bg-color: #f8f9fa;
-    --square-hover-bg-color: #e9ecef;
-    --button-bg-color: #6c5ce7;
-    --button-hover-bg-color: #5f3dc4;
-    --button-text-color: #ffffff;
-    --status-text-color: #495057;
-    --x-color: #e17055;
-    --o-color: #00b894;
-}
-
 * {
     box-sizing: border-box;
 }
