@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Board } from './board';
 import type { Player } from '../type';
 import { calculateWinner } from '../utils/winnerCalculator';
@@ -36,7 +36,7 @@ export function Game() {
         }
     }, [currentSquares, currentMove, history.length, updateScore]);
 
-    const moves = history.map((squares, move) => {
+    const moves = history.map((_, move) => {
         const description = move > 0 ? `Go to move #${move}` : 'Go to game start';
         return (
             <li key={move}> 
