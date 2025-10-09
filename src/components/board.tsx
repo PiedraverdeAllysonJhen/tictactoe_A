@@ -1,4 +1,4 @@
-import type { BoardProps, Player } from '../type';
+import type { BoardProps } from '../type';
 import Square from './square';
 import { calculateWinner } from '../utils/winnerCalculator';
 
